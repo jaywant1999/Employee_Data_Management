@@ -1,0 +1,71 @@
+.emplist {
+  width: 100%;
+  margin: auto;
+  margin-top: 25px;
+}
+
+.header {
+  background: rgb(65, 5, 126);
+  padding: 10px;
+  color: wheat;
+}
+
+.header h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.emptable {
+  border-radius: 15px;
+  background: linear-gradient(145deg, white, rgb(186, 129, 211));
+}
+
+.emplist table {
+  width: 95%;
+  margin: auto;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.emplist th {
+  padding: 5px;
+  border-bottom: 2px solid gray;
+}
+
+.emplist tr td {
+  height: 50px;
+  padding: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  border-bottom: 1px dotted gray;
+}
+
+.actionbtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.actionbtn button {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  font-size: 20px;
+  color: aliceblue;
+  text-align: center;
+}
+
+.actionbtn button:hover{
+    transform: scale(1.1);
+    box-shadow: 0px 0px 5px 2px rgb(255, 255, 255);
+}
+
+#editbtn{
+  background: #478aed;
+}
+
+#delbtn{
+  background: #b01212;
+}
