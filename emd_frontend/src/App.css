@@ -1,7 +1,9 @@
 .App {
   text-align: center;
-  height: 100vh;
-  background: linear-gradient(225deg, white, rgb(246, 205, 93));
-  padding: 10px 0px;
-
+  min-height: 100vh;
+  padding: 0px 0px;
+  background-image: url("./component/1.jpg"); 
+    background-size: cover;
+  background-repeat: no-repeat;
+  padding-bottom: 50px;
 }
