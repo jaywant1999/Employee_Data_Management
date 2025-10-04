@@ -7,9 +7,22 @@ import { CiSearch } from "react-icons/ci";
 function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [employees, setEmployees] = useState([]);
+  const [editEmployee, setEditEmployee] = useState(null);
 
   const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      designation: "",
+      department: "",
+      salary: "",
+    });
+    setEditEmployee(null);
+  };
 
   useEffect(() => {
     fetchEmployees();
@@ -44,19 +57,29 @@ function Home() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:2825/api/employees", {
-        method: "POST",
+      const method = editEmployee ? "PUT" : "POST";
+      const url = editEmployee
+        ? `http://localhost:2825/api/employees/${editEmployee.id}`
+        : "http://localhost:2825/api/employees";
+
+      const response = await fetch(url, {
+        method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
       if (response.ok) {
-        alert("Employee added successfully");
+        alert(
+          editEmployee
+            ? "Employee updated successfully"
+            : "Employee added successfully"
+        );
         closeModal();
 
         fetchEmployees();
+        setEditEmployee(null);
       } else {
-        alert("Errorin adding employee");
+        alert("Errorin in adding employee");
       }
     } catch (error) {
       console.log("Eror in adding :", error);
@@ -64,23 +87,40 @@ function Home() {
     }
   };
 
-  const handleDelete=async(id)=>{
-    if(!window.confirm(`Are you sure you want to delete employee with id ${id}`));
-    try{
-      const response = await fetch(`http://localhost:2825/api/employees/${id}`,{
-        method:"DELETE"
-      });
-      if(response.ok){
+  const handleDelete = async (id) => {
+    if (
+      !window.confirm(`Are you sure you want to delete employee with id ${id}`)
+    );
+    try {
+      const response = await fetch(
+        `http://localhost:2825/api/employees/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (response.ok) {
         alert(`Employee with id ${id} delete successfully`);
         fetchEmployees();
-      }else{
-        alert("Error in deleting employee!")
+      } else {
+        alert("Error in deleting employee!");
       }
+    } catch (error) {
+      console.log("Error in delete ", error);
+      alert("Something went wrong");
     }
-     catch(error){
-        console.log("Error in delete ",error);
-        alert("Something went wrong")
-      }
+  };
+
+  const handleEdit = (employee) => {
+    setEditEmployee(employee);
+    setFormData({
+      firstName: employee.firstName,
+      lastName: employee.lastName,
+      email: employee.email,
+      designation: employee.designation,
+      department: employee.department,
+      salary: employee.salary,
+    });
+    setIsModalOpen(true);
   };
 
   return (
@@ -129,10 +169,10 @@ function Home() {
                 <td>{emp.department}</td>
                 <td>{emp.salary}</td>
                 <td className="actionbtn">
-                  <button id="editbtn">
+                  <button id="editbtn" onClick={() => handleEdit(emp)}>
                     <FaEdit />
                   </button>
-                  <button id="delbtn" onClick={()=>handleDelete(emp.id)}>
+                  <button id="delbtn" onClick={() => handleDelete(emp.id)}>
                     <MdDeleteOutline />
                   </button>
                 </td>
@@ -145,7 +185,7 @@ function Home() {
       {isModalOpen && (
         <div className="modal-backdrop" onClick={closeModal}>
           <div className="modal" onClick={(e) => e.stopPropagation()}>
-            <h2>Add Employee</h2>
+            <h2>{editEmployee ? "Update Employee" : "Add Employee"}</h2>
             <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label htmlFor="firstName">First Name</label>
@@ -156,7 +196,7 @@ function Home() {
                   placeholder="First name"
                   value={formData.firstName}
                   onChange={handleChange}
-                  required  
+                  required
                 />
               </div>
               <div className="form-group">
@@ -218,7 +258,9 @@ function Home() {
               </div>
 
               <div className="modal-buttons">
-                <button type="submit">Save</button>
+                <button type="submit">
+                  {editEmployee ? "Update" : "Save"}
+                </button>
                 <button type="button" onClick={closeModal}>
                   Cancel
                 </button>
