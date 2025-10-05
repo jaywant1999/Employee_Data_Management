@@ -25,9 +25,9 @@ A full-stack web application to manage employee records efficiently. The project
  cd Employee_Data_Management
 
 # Backend Setup
- cd backend
- npm install
- npm run dev
+cd backend
+npm install
+npm run dev
 
 # Frontend Setup
   cd emd_frontend
