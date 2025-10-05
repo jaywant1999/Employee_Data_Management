@@ -47,7 +47,7 @@ function Home() {
 
   const fetchEmployees = async () => {
     try {
-      const response = await fetch("http://localhost:2825/api/employees");
+      const response = await fetch("http://192.168.1.103:2825/api/employees");
       const data = await response.json();
       setEmployees(data);
     } catch (error) {
@@ -61,8 +61,8 @@ function Home() {
     try {
       const method = editEmployee ? "PUT" : "POST";
       const url = editEmployee
-        ? `http://localhost:2825/api/employees/${editEmployee.id}`
-        : "http://localhost:2825/api/employees";
+        ? `http://192.168.1.103:2825/api/employees/${editEmployee.id}`
+        : "http://192.168.1.103:2825/api/employees";
 
       const response = await fetch(url, {
         method,

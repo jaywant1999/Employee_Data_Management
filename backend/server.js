@@ -110,5 +110,5 @@ app.delete("/api/employees/:id", (req, res) => {
 
 const PORT = process.env.PORT || 2825;
 app.listen(PORT, () => {
-  console.log(`Server is running on port http://localhost:${PORT}`);
+  console.log(`Server is running on port http://192.168.1.103:${PORT}`);
 });

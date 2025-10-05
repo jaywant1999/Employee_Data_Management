@@ -41,6 +41,8 @@
   opacity: 0.75;
   border-radius: 15px;
   padding: 0;
+  max-height: 500px;
+  overflow-y: auto;
 }
 
 .header {
@@ -85,8 +87,7 @@
 }
 
 #totalemp {
-  border-radius: 10px;
-  width: 400px;
+  width: 100%;
   margin: auto;
   margin-bottom: 15px;
   height: 40px;
@@ -108,6 +109,12 @@
   padding: 5px;
   border-bottom: 2px solid gray;
   font-size: large;
+}
+
+.emplist thead tr {
+  position: sticky;
+  top: 0;
+  background: #082e6e;
 }
 
 .emplist tr td {
@@ -176,14 +183,15 @@
   border-radius: 10px;
   max-width: 400px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
 }
 
 .modal form {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px;
-  width: full;
+  gap: 10px;
+  width: 100%;
 }
 
 .modal h2 {
@@ -194,7 +202,7 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
-  width: 300px;
+  width: 100%;
 }
 
 .form-group label {
@@ -211,6 +219,8 @@
   border-radius: 5px;
   border: 1px solid #ccc;
   outline: none;
+  width: 90%;
+  height: 20px;
 }
 
 .modal-buttons {
@@ -271,7 +281,7 @@
     font-size: 8px;
   }
 
-  .actionbtn{
+  .actionbtn {
     gap: 20px;
   }
 
@@ -289,12 +299,12 @@
     text-align: center;
   }
 
-  #totalemp{
+  #totalemp {
     font-size: medium;
   }
 
   #search {
-    width: 80%; 
+    width: 80%;
   }
 
   #search input {
@@ -331,7 +341,8 @@
   }
 
   .modal {
-    padding: 15px;
+    padding: 25px;
+    width: 80%;
   }
 
   .form-group {
@@ -339,14 +350,14 @@
   }
 }
 
-@media (max-width: 500px){
+@media (max-width: 500px) {
   .header {
     font-size: 18px;
     text-align: center;
   }
 
   #search {
-    width: 80%; 
+    width: 80%;
   }
 
   #search input {
@@ -377,7 +388,6 @@
   }
 
   .actionbtn button {
-     
     font-size: 8px;
     padding: 0;
     border-radius: 2px;

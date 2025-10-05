@@ -2,8 +2,12 @@
   text-align: center;
   min-height: 100vh;
   padding: 0px 0px;
-  background-image: url("./component/1.jpg"); 
-    background-size: cover;
+  background-image: url("./component/1.jpg");
+  background-size: cover;
   background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
   padding-bottom: 50px;
+  width: 100%; 
 }
+
