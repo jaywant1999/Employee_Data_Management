@@ -22,16 +22,21 @@ A full-stack web application to manage employee records efficiently. The project
 # Clone the repository
 
  git clone https://github.com/jaywant1999/Employee_Data_Management.git
+ 
  cd Employee_Data_Management
 
 # Backend Setup
-cd backend
-npm install
-npm run dev
+ cd backend
+
+ npm install
+
+ npm run dev
 
 # Frontend Setup
   cd emd_frontend
+  
   npm install
+  
   npm start
 
 ## Notes
